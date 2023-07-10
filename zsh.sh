@@ -29,7 +29,7 @@ install_ubuntu(){
     #optional
     #sudo apt-get install terminator -y 
     sudo apt-get install vim -y 
-    sudo apt-get install python-pip -y
+    sudo apt-get install python3-pip -y
     # https://github.com/robbyrussell/oh-my-zsh
     # git config --global --unset http.proxy 
     # git config --global --unset https.proxy
@@ -55,7 +55,7 @@ install_centos(){
     #optional
     #sudo yum install terminator -y 
     sudo yum install vim -y 
-    sudo yum install python-pip -y
+    sudo yum install python3-pip -y
     # https://github.com/robbyrussell/oh-my-zsh
     # git config --global --unset http.proxy 
     # git config --global --unset https.proxy
