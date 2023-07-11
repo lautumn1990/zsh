@@ -92,7 +92,7 @@ install_macOS(){
 install_dependencies(){
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
         source /etc/os-release
-        echo "OS: ", $ID 
+        echo "OS: " $ID 
         # linux
         if [ $ID == "centos" ]; then
           install_centos
@@ -151,7 +151,13 @@ install_zsh_plugins(){
 }
 
 config_zsh_plugins(){
-    sed -i 's/^plugins=.*/plugins=(git extract sudo autojump jsontools colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)/g' ~/.zshrc
+    sed -i 's/^plugins=.*/plugins=(git extract last-working-dir sudo autojump jsontools colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)/g' ~/.zshrc
+    cat <<EOF >>~/.zshrc
+# export TERM
+export TERM=xterm-256color
+# zsh autosuggest-accept by shift+tab
+bindkey '^[[Z' autosuggest-accept
+EOF
 }
 
 change_zsh_default_theme(){
@@ -162,7 +168,7 @@ change_zsh_default_theme(){
 change_zsh_bash_history(){
 
 cat <<EOF >>~/.zshrc
-# zsh history 20191012
+# zsh history
 HISTFILE="\$HOME/.zsh_history"
 HISTSIZE=100000000
 SAVEHIST=100000000

@@ -36,12 +36,14 @@ this script will install oh-my-zsh and set zsh as default shell, default theme i
 
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+  - add `shift`+`tab` to accept suggestion [Use <tab> to choose autosuggestion](https://github.com/zsh-users/zsh-autosuggestions/issues/532#issuecomment-637832244)
 - [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo)
 - [colored-man-pages](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages)
 - [extract](https://github.com/le0me55i/zsh-extract)
 - [autojump](https://github.com/wting/autojump)
 - [jsontools](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/jsontools)
+- [last-working-dir](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/last-working-dir)
 
 ## reference
 
