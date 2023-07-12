@@ -151,7 +151,7 @@ install_zsh_plugins(){
 }
 
 config_zsh_plugins(){
-    sed -i 's/^plugins=.*/plugins=(git extract last-working-dir sudo autojump jsontools colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)/g' ~/.zshrc
+    sed -i 's/^plugins=.*/plugins=(git extract last-working-dir sudo autojump jsontools colored-man-pages zsh-autosuggestions zsh-syntax-highlighting history-substring-search)/g' ~/.zshrc
     cat <<EOF >>~/.zshrc
 # export TERM
 export TERM=xterm-256color
