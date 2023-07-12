@@ -20,7 +20,7 @@ install_ubuntu(){
 
     # apt-get install sudo -y
     sudo apt-get update -y
-    # sudo apt-get install tmux -y
+    sudo apt-get install tmux -y
     sudo apt-get install git -y
     sudo apt-get install git -y # for not install strange bug 20180831
     sudo apt-get install curl -y 
@@ -46,7 +46,7 @@ install_centos(){
 
     # yum install sudo -y
     sudo yum update -y
-    # sudo yum install tmux -y
+    sudo yum install tmux -y
     sudo yum install git -y
     sudo yum install git -y # for not install strange bug 20180831
     sudo yum install curl -y 
@@ -77,7 +77,7 @@ install_macOS(){
     su - $USER -c brew install git
     su - $USER -c brew install curl
     su - $USER -c brew install zsh
-    # su - $USER -c brew install tmux
+    su - $USER -c brew install tmux
 
     #optional
     # brew install vim  | brew upgrade vim 
@@ -186,6 +186,85 @@ install_done(){
     /bin/zsh
 }
 
+install_tmux(){
+    git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+    ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
+    cp ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
+}
+
+uninstall_tmux(){
+    rm -rf ~/.tmux
+}
+
+install_vimrc(){
+    git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+    sh ~/.vim_runtime/install_awesome_vimrc.sh
+    git clone https://github.com/lifepillar/vim-solarized8.git \
+        ~/.vim_runtime/my_plugins/solarized8
+    cat <<EOF  >~/.vim_runtime/my_configs.vim
+" 显示行号
+set number
+" 显示标尺
+set ruler
+" 设置当文件被改动时自动载入
+set autoread
+" 自动保存
+set autowrite
+" 自动缩进
+set autoindent
+" 智能缩进
+set smartindent
+set cindent
+" 制表符
+set noexpandtab
+set smarttab
+" Tab键的宽度
+set tabstop=4
+set expandtab
+" 统一缩进为4
+set softtabstop=4
+set shiftwidth=4
+" 搜索逐字符高亮
+set hlsearch
+set incsearch
+set smartcase
+" 不自动添加空行
+set noendofline
+
+syntax on
+filetype plugin indent on
+runtime macros/matchit.vim
+
+" 关闭 vi 兼容模式
+set nocompatible
+
+" Highlight current line
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
+
+set showcmd       " display incomplete commands
+set laststatus=2  " Always display the status line
+set fileencodings=utf-8,gb18030,gbk,big5
+
+execute pathogen#infect()
+" 不支持箭头的系统可以设置为加号
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '+'
+
+let g:neocomplete#enable_at_startup = 1
+
+" 配色 需要放在pathogen#infect()后面
+set background=dark
+colorscheme solarized8
+EOF
+}
+
+uninstall_vimrc(){
+    rm -rf ~/.vim_runtime
+    rm -rf ~/.vimrc
+}
+
 install(){
     install_dependencies
     install_oh_my_zsh
@@ -195,6 +274,10 @@ install(){
     change_zsh_default_theme
     change_zsh_bash_history
     config_change_default_shell
+    if [ "$ZSHEXTRA" = "true" ]; then
+        install_tmux
+        install_vimrc
+    fi
     install_done
 }
 uninstall(){
@@ -204,21 +287,30 @@ uninstall(){
     rm ~/.zcompdump*
     rm ~/.zsh_history*
     sudo chsh ${USER_NAME} -s /bin/bash
+    if [ "$ZSHEXTRA" = "true" ]; then
+        uninstall_tmux
+        uninstall_vimrc
+    fi
     echo "uninstalled!!!"
     /bin/bash
 }
 
 ZSHTHEME="ys"
+ZSHEXTRA="false"
 USER_HOME=${HOME}
 USER_NAME=$(whoami)
 
-while getopts 'uit:h' opt; do
+while getopts 'uiet:h' opt; do
   case "$opt" in
     u)
       uninstall
       exit 0
       ;;
     i)
+      ;;
+    e)
+      ZSHEXTRA="true"
+      echo "extra install"
       ;;
     t)
       ZSHTHEME="$OPTARG"
@@ -228,6 +320,7 @@ while getopts 'uit:h' opt; do
       echo "Usage: $(basename $0) [-u] to uninstall"
       echo "       $(basename $0) [-i] to install default -i"
       echo "       $(basename $0) [-t] to install with theme like -t ys"
+      echo "       $(basename $0) [-e] to install or uninstall with extra tmux and vimrc"
       exit 0
       ;;
   esac
