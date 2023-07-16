@@ -194,6 +194,8 @@ install_tmux(){
 
 uninstall_tmux(){
     rm -rf ~/.tmux
+    rm -f ~/.tmux.conf
+    rm -f ~/.tmux.conf.local
 }
 
 install_vimrc(){
@@ -312,15 +314,15 @@ USER_NAME=$(whoami)
 
 while getopts 'uiet:h' opt; do
   case "$opt" in
+    e)
+      ZSHEXTRA="true"
+      echo "extra"
+      ;;
     u)
       uninstall
       exit 0
       ;;
     i)
-      ;;
-    e)
-      ZSHEXTRA="true"
-      echo "extra install"
       ;;
     t)
       ZSHTHEME="$OPTARG"
