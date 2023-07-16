@@ -258,6 +258,16 @@ let g:neocomplete#enable_at_startup = 1
 set background=dark
 colorscheme solarized8
 EOF
+
+    if [ -f ~/.zshrc ]; then
+        cat <<'EOF' >>~/.zshrc
+
+# init vim solarized8 colorscheme
+if [ ! -n "$TMUX" ] && [ -f ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh ]; then
+  sh ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh
+fi
+EOF
+    fi
 }
 
 uninstall_vimrc(){
