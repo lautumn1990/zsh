@@ -207,6 +207,8 @@ install_vimrc(){
     git clone https://github.com/lifepillar/vim-solarized8.git \
         ~/.vim_runtime/my_plugins/solarized8
     cat <<EOF  >~/.vim_runtime/my_configs.vim
+" 粘贴
+set paste
 " 显示行号
 set number
 " 显示标尺
@@ -268,7 +270,7 @@ EOF
         cat <<'EOF' >>~/.zshrc
 
 # init vim solarized8 colorscheme
-if [ -t 1 ] && [[ $- == *i* ]] && [ -z "$TMUX" ] && [ -f ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh ]; then
+if [ ! -n "$TMUX" ] && [ -f ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh ]; then
   sh ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh
 fi
 EOF
