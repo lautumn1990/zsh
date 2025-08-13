@@ -268,7 +268,7 @@ EOF
         cat <<'EOF' >>~/.zshrc
 
 # init vim solarized8 colorscheme
-if [ ! -n "$TMUX" ] && [ -f ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh ]; then
+if [ -t 1 ] && [[ $- == *i* ]] && [ -z "$TMUX" ] && [ -f ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh ]; then
   sh ~/.vim_runtime/my_plugins/solarized8/scripts/solarized8.sh
 fi
 EOF
