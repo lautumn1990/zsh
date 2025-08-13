@@ -4,14 +4,21 @@
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/lautumn1990/zsh/main/zsh.sh -o zsh.sh && bash zsh.sh
+
 # theme
 # curl -fsSL https://raw.githubusercontent.com/lautumn1990/zsh/main/zsh.sh -o zsh.sh && bash zsh.sh -t ys
+
+# 安装包含扩展
+# curl -fsSL https://raw.githubusercontent.com/lautumn1990/zsh/main/zsh.sh -o zsh.sh && bash zsh.sh -e
 ```
 
 ## uninstall
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/lautumn1990/zsh/main/zsh.sh -o zsh.sh && bash zsh.sh -u
+
+# 卸载包含扩展
+# curl -fsSL https://raw.githubusercontent.com/lautumn1990/zsh/main/zsh.sh -o zsh.sh && bash zsh.sh -u -e
 ```
 
 ## attention
@@ -36,7 +43,7 @@ this script will install oh-my-zsh and set zsh as default shell, default theme i
 
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-  - add `shift`+`tab` to accept suggestion [Use <tab> to choose autosuggestion](https://github.com/zsh-users/zsh-autosuggestions/issues/532#issuecomment-637832244)
+  - add `shift`+`tab` to accept suggestion [Use `tab` to choose autosuggestion](https://github.com/zsh-users/zsh-autosuggestions/issues/532#issuecomment-637832244)
 - [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)
 - [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo)
 - [colored-man-pages](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages)

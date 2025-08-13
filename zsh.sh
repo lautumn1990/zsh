@@ -190,6 +190,9 @@ install_tmux(){
     git clone https://github.com/gpakosz/.tmux.git ~/.tmux
     ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
     cp ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
+cat <<'EOF' >>~/.tmux.conf.local
+set -g mouse on
+EOF
 }
 
 uninstall_tmux(){
