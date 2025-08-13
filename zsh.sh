@@ -207,8 +207,6 @@ install_vimrc(){
     git clone https://github.com/lifepillar/vim-solarized8.git \
         ~/.vim_runtime/my_plugins/solarized8
     cat <<EOF  >~/.vim_runtime/my_configs.vim
-" 粘贴
-set paste
 " 显示行号
 set number
 " 显示标尺
@@ -260,6 +258,16 @@ let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '+'
 
 let g:neocomplete#enable_at_startup = 1
+
+" 使用 F2 切换粘贴模式
+set pastetoggle=<F2>
+
+" 可选：进入插入模式自动启用 paste，离开自动关闭
+augroup AutoPaste
+    autocmd!
+    autocmd InsertEnter * set paste
+    autocmd InsertLeave * set nopaste
+augroup END
 
 " 配色 需要放在pathogen#infect()后面
 set background=dark
