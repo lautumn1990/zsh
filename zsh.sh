@@ -192,6 +192,9 @@ install_tmux(){
     cp ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
 cat <<'EOF' >>~/.tmux.conf.local
 set -g mouse on
+# 设置识别控制序列等待时间
+# https://github.com/microsoft/terminal/issues/18004
+set -sg escape-time 50
 EOF
 }
 
